@@ -12,6 +12,7 @@ final class StringCalculatorService {
         guard  !numbers.isEmpty else {
             return 0
         }
-        return Int(numbers) ?? 0
+        let values = numbers.split(separator: ",").compactMap { Int($0) }
+        return values.reduce(0, +)
     }
 }
