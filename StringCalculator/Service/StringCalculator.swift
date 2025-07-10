@@ -25,6 +25,12 @@ final class StringCalculatorService {
         }
         let components = input.components(separatedBy: delimiterSet)
         let values = components.compactMap { Int($0) }
+        
+        let negatives = values.filter { $0 < 0 }
+        if !negatives.isEmpty {
+            throw CalculatorError.negativeNumbers(negatives)
+        }
+        
         return values.reduce(0, +)
     }
 }
