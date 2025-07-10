@@ -12,7 +12,18 @@ final class StringCalculatorService {
         guard  !numbers.isEmpty else {
             return 0
         }
-        let components = numbers.components(separatedBy: CharacterSet(charactersIn: ",\n"))
+        var input = numbers
+        var delimiterSet = CharacterSet(charactersIn: ",\n")
+
+        if numbers.hasPrefix("//") {
+            let parts = numbers.components(separatedBy: "\n")
+            if parts.count >= 2 {
+                let delimiter = parts[0].dropFirst(2)
+                input = parts[1]
+                delimiterSet = CharacterSet(charactersIn: "\(delimiter)\n")
+            }
+        }
+        let components = input.components(separatedBy: delimiterSet)
         let values = components.compactMap { Int($0) }
         return values.reduce(0, +)
     }
