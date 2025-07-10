@@ -37,5 +37,10 @@ final class StringCalculatorTests: XCTestCase {
         XCTAssertEqual(try calculator.add("//.\n1.2.3"), 6)
 
     }
-
+    
+    func testNegativeThrowsError() {
+        XCTAssertThrowsError(try calculator.add("-1,2,-3")) { error in
+            XCTAssertEqual(error.localizedDescription, "negative numbers not allowed: -1, -3")
+        }
+    }
 }
