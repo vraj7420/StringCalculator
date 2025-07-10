@@ -23,4 +23,8 @@ final class StringCalculatorTests: XCTestCase {
     func testSingleNumberReturnsItself() throws {
         XCTAssertEqual(try calculator.add("4"), 4)
     }
+    
+    func testCommaSeparatedReturnsSum() throws {
+        XCTAssertEqual(try calculator.add("1,2,3"), 6)
+    }
 }
