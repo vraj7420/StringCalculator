@@ -31,4 +31,11 @@ final class StringCalculatorTests: XCTestCase {
     func testSupportsNewlineDelimiter() throws {
         XCTAssertEqual(try calculator.add("1\n2,3"), 6)
     }
+    
+    func testCustomDelimiter() throws {
+        XCTAssertEqual(try calculator.add("//;\n1;2"), 3)
+        XCTAssertEqual(try calculator.add("//.\n1.2.3"), 6)
+
+    }
+
 }
