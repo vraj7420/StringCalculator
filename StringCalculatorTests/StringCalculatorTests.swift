@@ -19,4 +19,8 @@ final class StringCalculatorTests: XCTestCase {
     func testEmptyInputReturnsZero() throws {
         XCTAssertEqual(try calculator.add(""), 0)
     }
+    
+    func testSingleNumberReturnsItself() throws {
+        XCTAssertEqual(try calculator.add("4"), 4)
+    }
 }
