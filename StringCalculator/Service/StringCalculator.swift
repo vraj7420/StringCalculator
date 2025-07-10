@@ -9,6 +9,9 @@ import Foundation
 
 final class StringCalculatorService {
     func add(_ numbers: String) throws -> Int {
-        return 0
+        guard  !numbers.isEmpty else {
+            return 0
+        }
+        return Int(numbers) ?? 0
     }
 }
