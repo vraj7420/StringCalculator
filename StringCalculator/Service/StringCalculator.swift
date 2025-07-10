@@ -16,12 +16,13 @@ final class StringCalculatorService {
         var delimiterSet = CharacterSet(charactersIn: ",\n")
 
         if numbers.hasPrefix("//") {
-            let parts = numbers.components(separatedBy: "\n")
-            if parts.count >= 2 {
-                let delimiter = parts[0].dropFirst(2)
-                input = parts[1]
-                delimiterSet = CharacterSet(charactersIn: "\(delimiter)\n")
-            }
+            if let newlineRange = numbers.range(of: "\n") {
+                   let delimiterPart = numbers[numbers.index(numbers.startIndex, offsetBy: 2)..<newlineRange.lowerBound]
+                   let numberPart = numbers[newlineRange.upperBound...]
+                   let delimiter = String(delimiterPart)
+                   input = String(numberPart)
+                   delimiterSet = CharacterSet(charactersIn: "\(delimiter)\n")
+               }
         }
         let components = input.components(separatedBy: delimiterSet)
         let values = components.compactMap { Int($0) }

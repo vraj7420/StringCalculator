@@ -28,7 +28,7 @@ struct StringCalculatorView: View {
                     
                     
                     TextEditor(text: $viewModel.input)
-                        .frame(height: 180)
+                        .frame(height: 350)
                         .padding(10)
                         .background(ColorConstant.inputFieldBg)
                         .cornerRadius(8)
